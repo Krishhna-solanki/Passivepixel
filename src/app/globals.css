@@ -24,11 +24,38 @@ html {
 }
 
 body {
+  /* never let a wide element make mobile browsers zoom the page out (clip, unlike hidden, keeps sticky working) */
+  overflow-x: clip;
   background: var(--color-obsidian);
   color: #fff;
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* ---------- scrollbar: thin, brand gradient ---------- */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-obsidian);
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #d946ef, #a020f0, #6200ea);
+  border: 2px solid var(--color-obsidian);
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #c34dff;
+  border-width: 1px;
+}
+/* Firefox (only Firefox: in Chromium these standard properties would override the gradient above) */
+@supports (-moz-appearance: none) {
+  html {
+    scrollbar-width: thin;
+    scrollbar-color: #8b35f5 var(--color-obsidian);
+  }
 }
 
 ::selection {
